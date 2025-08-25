@@ -12,6 +12,8 @@ on:
 
 jobs:
   python_process:
+    runs-on: ubuntu-latest
+    
     steps:
       - name: Get link to code of our repository
         uses: actions/checkout@v5
