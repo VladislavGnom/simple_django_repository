@@ -27,6 +27,8 @@ jobs:
           python-version: ${{ matrix.python_version }}
       - name: Install requirements
         run: pip install -r "requirements.txt"
+      - name: Check Security using Safety tool
+        run: safety check -r "requirements.txt"
       - name: Use flake8
         run: echo 'Everything is complete'
         # run: |
