@@ -20,4 +20,11 @@ jobs:
         with:
           python-version: '3.13'
       - name: Install requirements
-        run: python -r install requirements.txt
+        run: python install -r requirements.txt
+      - name: Use flake8
+        run: |
+          flake8 "animalapp/"
+          flake8 "animalproject/"
+      - name: Run django tests
+        run: python manage.py test
+
