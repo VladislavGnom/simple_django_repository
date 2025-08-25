@@ -10,20 +10,21 @@ on:
       - main 
       - dev
 
-strategy:
-  matrix:
-    python_versions: [3.9, 3.10, 3.11]
 
 jobs:
   python_process:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python_version: [3.9, 3.10, 3.11]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Get link to code of our repository
         uses: actions/checkout@v5
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python_versions }}
+          python-version: ${{ matrix.python_version }}
       - name: Install requirements
         run: pip install -r "requirements.txt"
       - name: Use flake8
