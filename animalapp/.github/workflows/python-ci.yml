@@ -1,0 +1,23 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main 
+      - dev
+
+jobs:
+  python_process:
+    steps:
+      - name: Get link to code of our repository
+        uses: actions/checkout@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install requirements
+        run: python -r install requirements.txt
